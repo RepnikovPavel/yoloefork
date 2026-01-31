@@ -7,8 +7,6 @@ DOCLINES = (__doc__ or '')
 
 import os.path
 import sys
-import pip
-
 import setuptools
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "lvis"))
