@@ -11,7 +11,6 @@ from setuptools import find_packages, setup
 NAME = "SAM-2"
 VERSION = "1.0"
 DESCRIPTION = "SAM 2: Segment Anything in Images and Videos"
-URL = "https://github.com/facebookresearch/sam2"
 AUTHOR = "Meta AI"
 AUTHOR_EMAIL = "segment-anything@meta.com"
 LICENSE = "Apache 2.0"
@@ -22,8 +21,6 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 # Required dependencies
 REQUIRED_PACKAGES = [
-    "torch>=2.5.1",
-    "torchvision>=0.20.1",
     "numpy>=1.24.4",
     "tqdm>=4.66.1",
     "hydra-core>=1.3.2",
@@ -160,7 +157,6 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    url=URL,
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     license=LICENSE,
