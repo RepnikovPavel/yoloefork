@@ -94,9 +94,9 @@ class YOLOE(Model):
             },
         }
 
-    def get_text_pe(self, texts):
+    def get_text_pe(self, texts, ckptfile):
         assert(isinstance(self.model, YOLOEModel))
-        return self.model.get_text_pe(texts)
+        return self.model.get_text_pe(texts,ckptfile=ckptfile)
     
     def get_visual_pe(self, img, visual):
         assert(isinstance(self.model, YOLOEModel))

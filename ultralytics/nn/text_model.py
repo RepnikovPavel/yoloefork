@@ -45,10 +45,19 @@ class MobileCLIP(TextModel):
         "blt": "b"
     }
     
-    def __init__(self, size, device):
+    def __init__(
+        self,
+        ckptfile,
+        size, 
+        device):
         super().__init__()
         config = self.config_size_map[size]
-        self.model = mobileclip.create_model_and_transforms(f'mobileclip_{config}', pretrained=f'mobileclip_{size}.pt', device=device)[0]
+        self.model = mobileclip.create_model_and_transforms(
+            f'mobileclip_{config}', 
+            # pretrained=f'mobileclip_{size}.pt', 
+            pretrained=ckptfile,
+            device=device
+        )[0]
         self.tokenizer = mobileclip.get_tokenizer(f'mobileclip_{config}')
         self.to(device)
         self.device = device
@@ -66,13 +75,14 @@ class MobileCLIP(TextModel):
         text_features /= text_features.norm(p=2, dim=-1, keepdim=True)
         return text_features
 
-def build_text_model(variant, device=None):
+def build_text_model(variant, device=None,ckptfile=None):
     LOGGER.info(f"Build text model {variant}")
+    assert device is not None
     base, size = variant.split(":")
     if base == 'clip':
         return CLIP(size, device)
     elif base == 'mobileclip':
-        return MobileCLIP(size, device)
+        return MobileCLIP(size=size, device=device,ckptfile=ckptfile)
     else:
         print("Variant not found")
         assert(False)
