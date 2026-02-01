@@ -667,13 +667,15 @@ class YOLOEModel(DetectionModel):
         self.model[-1].nc = len(names)
         self.names = check_class_names(names)
 
-    def get_vocab(self, names):
+    def get_vocab(self, names,ckptfile):
+        assert ckptfile is not None
+
         assert(not self.training)
         head = self.model[-1]
         assert(isinstance(head, YOLOEDetect))
         assert(not head.is_fused)
         
-        tpe = self.get_text_pe(names)
+        tpe = self.get_text_pe(names,ckptfile=ckptfile)
         self.set_classes(names, tpe)
         self.fuse()
 

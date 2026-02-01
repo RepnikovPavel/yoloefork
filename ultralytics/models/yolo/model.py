@@ -106,9 +106,9 @@ class YOLOE(Model):
         assert(isinstance(self.model, YOLOEModel))
         self.model.set_vocab(vocab, names=names)
     
-    def get_vocab(self, names):
+    def get_vocab(self, names,ckptfile):
         assert(isinstance(self.model, YOLOEModel))
-        return self.model.get_vocab(names)
+        return self.model.get_vocab(names,ckptfile=ckptfile)
 
     def set_classes(self, classes, embeddings):
         """
